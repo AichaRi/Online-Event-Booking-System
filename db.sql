@@ -1,4 +1,3 @@
--- إنشاء قاعدة البيانات
 CREATE DATABASE IF NOT EXISTS event_booking_system;
 USE event_booking_system;
 
@@ -18,7 +17,8 @@ CREATE TABLE events (
     location VARCHAR(255) NOT NULL,
     ticket_price DECIMAL(10,2) NOT NULL,
     image VARCHAR(255),
-    max_tickets INT NOT NULL
+    max_tickets INT NOT NULL,
+    description TEXT NOT NULL
 );
 
 -- جدول الحجوزات
@@ -32,4 +32,3 @@ CREATE TABLE bookings (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (event_id) REFERENCES events(event_id) ON DELETE CASCADE
 );
-
