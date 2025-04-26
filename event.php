@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
             'price'      => $event['ticket_price'],
             'quantity'   => $quantity
         ];
-        header('Location: cart.php');
+        header('Location: home.php');
         exit;
     }
 }
