@@ -56,6 +56,60 @@ button:hover {
     background-color: #0056b3;
 }
 
+.btn-small {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    background-color: #007bff; /* or whatever color you prefer */
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100px;
+}
+
+.btn-delete {
+    display: inline;
+    background-color: #dc3545; /* Bootstrap red */
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px; /* little space between buttons */
+    width: 300px;
+    display: inline-block;
+
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* darker red on hover */
+}
+
+.btn-cancel {
+    display: inline;
+    background-color: #6c757d; /* Bootstrap gray */
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100px;
+
+
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268; /* darker gray on hover */
+}
+
+
+.button-group {
+    display: flex; gap: 0.5rem; padding: 0; border: none; margin: 0;
+  }
+
+
 /* Error message */
 p {
     color: red;

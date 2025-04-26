@@ -7,25 +7,19 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 // Dummy event data (replace with database later)
 $eventId = isset($_GET['id']) ? $_GET['id'] : null;
-$eventName = "Sample Event"; // Replace with database fetch based on $eventId
-$eventDate = "2025-05-01";   // Replace with database fetch
-$eventLocation = "Sample Venue"; // Replace with database fetch
-$eventDescription = "Sample event description."; // Replace with database fetch
+$eventName = "Sample Event"; 
+$eventDate = "2025-05-01";   
+$eventLocation = "Sample Venue"; 
+$eventDescription = "Sample event description."; 
 
 // Dummy check for bookings (replace with actual check in DB)
-$hasBookings = false; // Replace with database check if there are bookings for this event
+$hasBookings = false; 
 
 // Handle event deletion
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Check for bookings before deleting
     if ($hasBookings) {
-        // Add an error message if bookings are linked
         $errorMessage = "This event cannot be deleted because it has bookings.";
     } else {
-        // Normally you would delete the event from the database here
-        // Example: DELETE FROM events WHERE event_id = $eventId;
-
-        // Redirect to manageEvents.php after deleting
         header("Location: manageEvents.php");
         exit;
     }
@@ -43,36 +37,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
 
 <aside>
-        <h2>Admin Panel</h2>
-            <ul>
-                <li><a href="manageEvents.php">Manage Events</a></li>
-                <li><a href="addEvent.php">Add Event</a></li>
-                <li><a href="viewBookings.php">View Bookings</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
-    </aside>
+    <h2>Admin Panel</h2>
+    <nav>
+        <ul>
+            <li><a href="manageEvents.php">Manage Events</a></li>
+            <li><a href="addEvent.php">Add Event</a></li>
+            <li><a href="viewBookings.php">View Bookings</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </nav>
+</aside>
 
 <main>
- <section>
+    <section>
+        <header>
+            <h1>Delete Event</h1>
+        </header>
 
-    <h1>Delete Event</h1>
+        <?php if (isset($errorMessage)): ?>
+            <section role="alert" class="error-message">
+                <p><?php echo $errorMessage; ?></p>
+            </section>
+        <?php endif; ?>
 
-    <?php if (isset($errorMessage)): ?>
-        <p style="color: red;"><?php echo $errorMessage; ?></p>
-    <?php endif; ?>
+        <article>
+            <h3>Confirm Deletion</h3>
+            <p>Are you sure you want to delete the following event?</p>
 
-    <h3>Are you sure you want to delete this event?</h3>
-    <p><strong>Event Name:</strong> <?php echo $eventName; ?></p>
-    <p><strong>Date:</strong> <?php echo $eventDate; ?></p>
-    <p><strong>Location:</strong> <?php echo $eventLocation; ?></p>
-    <p><strong>Description:</strong> <?php echo $eventDescription; ?></p>
+            <h4> <?php echo htmlspecialchars($eventName); ?></h4>
+            <p><strong >Date:</strong> <?php echo htmlspecialchars($eventDate); ?></p>
+            <p><strong >Location:</strong> <?php echo htmlspecialchars($eventLocation); ?></p>
+            <p><strong >Bookings:</strong> <?php echo htmlspecialchars($eventDescription); ?></p>
+        </article>
 
-    <form method="POST" action="">
-        <button type="submit">Yes, Delete this Event</button>
-        <a href="manageEvents.php">Cancel</a>
-    </form>
- <section>
 
+        <form method="POST" action="">
+        <fieldset class="button-group">
+        <button type="submit" class="btn-delete" onclick="window.location.href='manageEvents.php';">
+           Yes, Delete this Event</button>
+           <button type="button" class="btn-cancel" onclick="window.location.href='manageEvents.php';">
+           Cancel</button>
+         </fieldset>
+        </form>
+    </section>
 </main>
 
 </body>

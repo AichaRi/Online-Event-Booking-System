@@ -86,7 +86,7 @@ document.getElementById('eventImageInput').addEventListener('change', function(e
         <label>Description:</label><br>
         <textarea name="eventDescription" required><?php echo htmlspecialchars($eventDescription); ?></textarea><br><br>
 
-        <button type="submit">Update Event</button>
+        <button type="submit" class="btn-small">Update Event</button>
     </form>
 </section>
 </main>

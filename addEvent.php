@@ -76,22 +76,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label>Date:</label><br>
         <input type="date" name="eventDate" required><br><br>
 
-        <label>Time:</label><br>
-        <input type="time" name="eventTime" required><br><br>
-
         <label>Location:</label><br>
         <input type="text" name="eventLocation" required><br><br>
 
         <label>Ticket Price:</label><br>
         <input type="number" name="ticketPrice" step="0.01" required><br><br>
 
+        <label>Maximum Tickets:</label><br>
+        <input type="number" name="maxTickets" required><br><br>
+
         <label>Event Image:</label><br>
         <input type="file" name="eventImage" accept="image/*" required><br><br>
 
-        <label>Maximum Number of Tickets:</label><br>
-        <input type="number" name="maxTickets" required><br><br>
+        <label>Description:</label><br>
+        <textarea name="eventLocation" required></textarea><br><br>
 
-        <button type="submit">Add Event</button>
+        <button type="submit"  onclick="window.location.href='manageEvents.php';" class="btn-small">Add Event</button>
+
     </form>
  <section>
 
