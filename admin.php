@@ -1,12 +1,13 @@
 <?php
 session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     //This retrieves the username entered in the form. $_POST is used to collect form data after submission.
     $password = $_POST['password'];
 
     // Check login credentials
-    if ($username === 'admin' && $password === '1') {
+    if ($username === 'admin' && $password === 'admin123') {
         $_SESSION['logged_in'] = true;
         //This creates a session variable (logged_in) and sets it to true. This will indicate that the user is logged in and can access protected areas of the website.
         header('Location: manageEvents.php');
@@ -15,8 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $error = "Invalid credentials.";
     }
-}
-?>
+}?>
 
 <!DOCTYPE html>
 <html lang="en">
