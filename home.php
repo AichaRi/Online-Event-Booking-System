@@ -1,21 +1,44 @@
 <?php
 session_start();
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
-?>
+require 'config.php';   // gives you $pdo
 
+// Determine display name
+$username = isset($_SESSION['user_name'])
+    ? $_SESSION['user_name']
+    : 'Guest';
+
+// Fetch all upcoming events
+try {
+    $stmt = $pdo->query("
+        SELECT
+            event_id,
+            event_name,
+            event_datetime,
+            image,
+            location,
+            ticket_price,
+            description
+        FROM events
+        ORDER BY event_datetime ASC
+    ");
+    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error loading events: " . htmlspecialchars($e->getMessage()));
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Event Booking System</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
     <div style="display: flex; align-items: center;">
-    <img src="logo.jpg" alt="Event Booking Logo">
-    <h1 style="margin-left: 10px;">Event Booking System</h1>
+        <img src="logo.jpg" alt="Event Booking Logo" style="height:60px;">
+        <h1 style="margin-left: 10px;">Event Booking System</h1>
     </div>
     <div>
         <p>Welcome, <?php echo htmlspecialchars($username); ?>.</p>
@@ -27,31 +50,41 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 </header>
 
 <main>
-    <!-- Event cards -->
-    <?php
-    // Sample events array
-    $events = [
-        ["name" => "concert night", "image" => "concertnight.JPG", "date" => "2025-06-15"],
-        ["name" => "Art Exhibition", "image" => "ArtExhibition.JPG", "date" => "2025-07-10"],
-        ["name" => "Food Carnival", "image" => "FoodCarnival.JPG", "date" => "2025-08-05"],
-        ["name" => "Tech Conference", "image" => "TechConference.JPG", "date" => "2025-09-12"],
-    ];
-
-
-    foreach ($events as $event) {
-        echo '
-        <div class="event-card">
-            <img src="' . htmlspecialchars($event['image']) . '" alt="' . htmlspecialchars($event['name']) . '">
-            <h3>' . htmlspecialchars($event['name']) . '</h3>
-            <p>' . htmlspecialchars($event['date']) . '</p>
-            <button class="book-now">Book Now</button>
-        </div>';
-    }
-    ?>
+    <?php if (empty($events)): ?>
+        <p style="text-align:center; padding: 50px;">No events available at the moment. Please check back later.</p>
+    <?php else: ?>
+        <div class="events-grid">
+            <?php foreach ($events as $e): ?>
+                <?php
+                    // Format date nicely
+                    $date = date('F j, Y', strtotime($e['event_datetime']));
+                ?>
+                <div class="event-card">
+                    <?php if ($e['image'] && file_exists($e['image'])): ?>
+                        <img
+                          src="<?php echo htmlspecialchars($e['image']); ?>"
+                          alt="<?php echo htmlspecialchars($e['event_name']); ?>"
+                        >
+                    <?php endif; ?>
+                    <h3><?php echo htmlspecialchars($e['event_name']); ?></h3>
+                    <p><strong>Date:</strong> <?php echo htmlspecialchars($date); ?></p>
+                    <p><strong>Location:</strong> <?php echo htmlspecialchars($e['location']); ?></p>
+                    <p><?php echo nl2br(htmlspecialchars($e['description'])); ?></p>
+                    <p><strong>Price:</strong> $<?php echo number_format($e['ticket_price'],2); ?></p>
+                    <button
+                      class="book-now"
+                      onclick="location.href='event.php?id=<?php echo $e['event_id']; ?>'"
+                    >Book Now</button>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 </main>
 
 <footer>
-    <p>&copy; <?php echo date("Y"); ?> Event Booking System. All rights reserved.</p>
+    <p style="text-align:center; padding: 20px;">
+        &copy; <?php echo date("Y"); ?> Event Booking System. All rights reserved.
+    </p>
 </footer>
 
 </body>
