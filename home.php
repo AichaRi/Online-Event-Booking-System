@@ -1,5 +1,4 @@
 <?php
-// Assume user session is started and user's name is stored in $_SESSION['username']
 session_start();
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 ?>
