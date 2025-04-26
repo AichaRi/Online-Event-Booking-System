@@ -5,6 +5,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit;
 }
 
+require 'config.php';  //give $pdo
+
 // Initialize error message
 $errorMessage = "";
 
@@ -12,15 +14,17 @@ $errorMessage = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get form data
     $eventName = $_POST['eventName'];
-    $eventDate = $_POST['eventDate'];
-    $eventTime = $_POST['eventTime'];
+    $eventDate = $_POST['datetime'];
     $eventLocation = $_POST['eventLocation'];
     $ticketPrice = $_POST['ticketPrice'];
     $eventImage = $_FILES['eventImage'];
     $maxTickets = $_POST['maxTickets'];
+    $description = $_POST['description'];
+
+
 
     // Validate required fields
-    if (empty($eventName) || empty($eventDate) || empty($eventTime) || empty($eventLocation) || empty($ticketPrice) || empty($eventImage) || empty($maxTickets)) {
+    if (empty($eventName) || empty($eventDate) || empty($eventLocation) || empty($ticketPrice) || empty($eventImage) || empty($maxTickets) || empty($description)) {
         $errorMessage = "All fields are required!";
     } else {
         // Handle file upload (event image)
@@ -28,10 +32,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $imagePath = $imageDir . basename($eventImage['name']);
         
         if (move_uploaded_file($eventImage['tmp_name'], $imagePath)) {
-            // Now, save event data to the database (placeholder logic for now)
-            // Example: INSERT INTO events (event_name, event_date, event_time, location, ticket_price, image_path, max_tickets) VALUES (...);
+            // Now, save event data to the database 
+$eventName     = trim($_POST['eventName']);
+    $eventDatetime = trim($_POST['datetime']);         // datetime-local
+    $eventLocation = trim($_POST['eventLocation']);
+    $ticketPrice   = trim($_POST['ticketPrice']);
+    $maxTickets    = intval($_POST['maxTickets']);
+    // $imagePath already holds 'uploads/filename.ext'
 
-            // Redirect after successful event creation
+   $sql = "INSERT INTO events
+    (event_name, event_datetime, location, ticket_price, image, max_tickets, description)
+  VALUES
+    (:name, :dt, :loc, :price, :img, :max, :desc)";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([
+    ':name'  => $eventName,
+    ':dt'    => $eventDatetime,
+    ':loc'   => $eventLocation,
+    ':price' => $ticketPrice,
+    ':img'   => $imagePath,
+    ':max'   => $maxTickets,
+    ':desc'  => $description
+]);
+
+           // Redirect after successful event creation
             header("Location: manageEvents.php");
             exit;
         } else {
@@ -74,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="text" name="eventName" required><br><br>
 
         <label>Date:</label><br>
-        <input type="date" name="eventDate" required><br><br>
+         <input name="datetime" type="datetime-local" required><br><br>
 
         <label>Location:</label><br>
         <input type="text" name="eventLocation" required><br><br>
@@ -89,9 +113,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="file" name="eventImage" accept="image/*" required><br><br>
 
         <label>Description:</label><br>
-        <textarea name="eventLocation" required></textarea><br><br>
+        <textarea name="description" required></textarea><br><br>
 
-        <button type="submit"  onclick="window.location.href='manageEvents.php';" class="btn-small">Add Event</button>
+        <button type="submit" " class="btn-small">Add Event</button>
 
     </form>
  <section>
@@ -100,3 +124,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 </body>
 </html>
+
