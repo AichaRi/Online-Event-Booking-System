@@ -128,3 +128,38 @@ main.cart {
   padding: 1rem;
   margin-top: 2rem;
 }
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  /* Cart panel */
+  main.cart {
+    padding: 16px;
+  }
+
+  /* Table padding */
+  .cart__table th,
+  .cart__table td {
+    padding: 8px 10px;
+  }
+
+  /* Allow horizontal scroll on the table */
+  .cart__items {
+    overflow-x: auto;
+  }
+
+  /* Header nav becomes vertical */
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .site-header .user-controls {
+    flex-wrap: wrap;
+  }
+
+  /* Button full-width for tap targets */
+  .cart__button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
