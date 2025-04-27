@@ -15,18 +15,20 @@ require_once 'config.php';
 </head>
 <body>
 
-<div class="admin-container">
-    <aside class="side-menu">
-        <h2>Admin Panel</h2>
-        <ul>
-            <li><a href="manageEvents.php">Manage Events</a></li>
-            <li><a href="addEvent.php">Add Event</a></li>
-            <li><a href="viewBookings.php" class="active">View Bookings</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
-    </aside>
+<aside >
+    <h2>Admin Panel</h2>
+    <ul>
+        <li><a href="manageEvents.php">Manage Events</a></li>
+        <li><a href="addEvent.php">Add Event</a></li>
+        <li><a href="viewBookings.php">View Bookings</a></li>
+        <li><a href="logout.php">Logout</a></li>
+    </ul>
+</aside>
 
-    <main class="main-section">
+
+
+<main>
+<section>
         <h1>All Bookings</h1>
 
         <table class="bookings-table">
@@ -69,9 +71,8 @@ require_once 'config.php';
                 ?>
             </tbody>
         </table>
-
-    </main>
-</div>
+    </section>
+</main>
 
 <script src="adminBookings.js"></script> <!-- استدعاء ملف جافاسكريبت -->
 </body>

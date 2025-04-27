@@ -24,8 +24,8 @@ if (!$event) {
 <head>
   <meta charset="UTF-8">
   <title>View Event</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <link rel="stylesheet" href="../style.css">
+  </head>
 <body>
   <aside>
     <h2>Admin Panel</h2>
