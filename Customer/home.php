@@ -8,7 +8,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 <head>
     <meta charset="UTF-8">
     <title>Event Booking System</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 

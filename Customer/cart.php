@@ -52,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
 <html>
 <head>
     <title>Your Cart</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Your Cart</h1>

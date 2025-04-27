@@ -57,6 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 <html>
 <head>
     <title><?php echo htmlspecialchars($event['event_name']); ?> - Book Tickets</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <h1><?php echo htmlspecialchars($event['event_name']); ?></h1>
