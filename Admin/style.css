@@ -195,28 +195,58 @@ th {
 
 .actions a:hover {
     text-decoration: underline;
+}     /* ===== Site Header ===== */
+.site-header {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
 }
-/* ===== Cart Component ===== */
-main.cart {
-  display: block;          /* Integrates with your flex layout */
-  background-color: #f9f9f9;
-  padding: 40px;
+.site-header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.site-header .user-controls {
+  display: flex;
+  gap: 1rem;
+}
+.site-header .user-controls a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background-color: #007BFF;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+.site-header .user-controls a:hover {
+  background-color: #0056b3;
 }
 
+/* ===== Cart Panel ===== */
+main.cart {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 .cart__header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 .cart__header h1 {
   font-size: 2rem;
   margin: 0;
 }
 
-/* Messages (overrides generic p { color: red }) */
+/* Messages (error/success) */
 .cart__messages .message {
-  border-radius: 10px;
-  padding: 12px 20px;
-  margin-bottom: 20px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
   font-size: 0.95rem;
 }
 .message--error {
@@ -228,24 +258,20 @@ main.cart {
   color: #3c763d;
 }
 
-/* Table wrapper */
+/* Items Table */
 .cart__items {
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 .cart__table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .cart__table thead {
   background-color: #f0f0f0;
 }
 .cart__table th,
 .cart__table td {
-  padding: 12px 15px;
+  padding: 0.75rem 1rem;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
@@ -256,10 +282,10 @@ main.cart {
   background-color: #f1f1f1;
 }
 
-/* Summary and meta */
+/* Summary & Meta */
 .cart__summary {
   text-align: right;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 }
 .cart__total {
   font-size: 1.125rem;
@@ -269,25 +295,33 @@ main.cart {
   text-align: right;
   font-size: 0.9rem;
   color: #666;
-  margin-bottom: 30px;
+  margin-bottom: 1.5rem;
 }
 
-/* Actions */
+/* Reserve Button */
 .cart__actions {
   text-align: center;
 }
 .cart__button {
-  padding: 12px 24px;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   background-color: #007BFF;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
   text-transform: uppercase;
 }
 .cart__button:hover {
   background-color: #0056b3;
 }
 
+/* ===== Site Footer ===== */
+.site-footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
