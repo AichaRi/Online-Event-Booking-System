@@ -1,0 +1,123 @@
+/* home.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header, footer {
+    background-color: #333;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-title {
+    display: flex;
+    align-items: center;
+}
+.logo-title img {
+    height: 50px;
+    margin-right: 10px;
+}
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.header-buttons span {
+    margin-right: 10px;
+}
+.header-buttons button {
+    padding: 8px 16px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.header-buttons button:first-of-type {
+    background-color: #28a745; /* Cart Button - أخضر */
+}
+
+.header-buttons button:last-of-type {
+    background-color: #dc3545; /* Logout Button - أحمر */
+}
+
+.header-buttons button:first-of-type:hover {
+    background-color: #218838; /* Hover أخضر */
+}
+
+.header-buttons button:last-of-type:hover {
+    background-color: #c82333; /* Hover أحمر */
+}
+
+main {
+    flex: 1;
+    padding: 2em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+.event-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s;
+}
+.event-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.event-card h3, .event-card p {
+    margin: 0.5em 0;
+}
+.book-now {
+    position: absolute;
+    bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.event-card:hover .book-now {
+    opacity: 1;
+}
+footer {
+    margin-top: auto;
+}
+.no-events {
+    text-align: center;
+    padding: 50px;
+    font-size: 20px;
+    color: #555;
+}
+@media (max-width: 992px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+}
