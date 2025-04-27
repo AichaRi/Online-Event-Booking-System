@@ -196,3 +196,98 @@ th {
 .actions a:hover {
     text-decoration: underline;
 }
+/* ===== Cart Component ===== */
+main.cart {
+  display: block;          /* Integrates with your flex layout */
+  background-color: #f9f9f9;
+  padding: 40px;
+}
+
+.cart__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.cart__header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* Messages (overrides generic p { color: red }) */
+.cart__messages .message {
+  border-radius: 10px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+.message--error {
+  background-color: #fdecea;
+  color: #a94442;
+}
+.message--success {
+  background-color: #e9f7ef;
+  color: #3c763d;
+}
+
+/* Table wrapper */
+.cart__items {
+  margin-bottom: 20px;
+}
+.cart__table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.cart__table thead {
+  background-color: #f0f0f0;
+}
+.cart__table th,
+.cart__table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.cart__table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+.cart__table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Summary and meta */
+.cart__summary {
+  text-align: right;
+  margin-bottom: 10px;
+}
+.cart__total {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+.cart__meta {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Actions */
+.cart__actions {
+  text-align: center;
+}
+.cart__button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+.cart__button:hover {
+  background-color: #0056b3;
+}
+
